@@ -2,7 +2,6 @@ argcomplete==2.0.0
 asgiref==3.7.2
 bcrypt==3.2.2
 blinker==1.6.2
-Brlapi==0.8.4
 certifi==2022.9.24
 chardet==5.1.0
 click==8.1.6
