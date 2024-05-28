@@ -8,9 +8,8 @@ class CustomerSerializer(serializers.Serializer):
         model = Customer
         fields = ['id', 'name', 'code']
 
-    def create(self,validated):
-        return Customer.object.create(validated=validated)   
-
+    def create(self, validated):
+        return Customer.objects.create(**validated)
 
 class OrderSerializer(serializers.Serializer):
     class Meta:
