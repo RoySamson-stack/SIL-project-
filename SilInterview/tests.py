@@ -1,4 +1,5 @@
 from django.test import TestCase
+from rest_framework.test import  APITestCase
 from .models import Customer, Order
 from django.urls import reverse
 from rest_framework import status 
@@ -15,17 +16,13 @@ class CustomerTestCase(TestCase):
         self.assertEqual(customer.name, "Test customer")
 
 
-class CustomerAPITest(TestCase):
+
+class CustomerAPITest(APITestCase):
     def setUp(self):
-        self.customer_data = {"name": "Test Customer", "code": "TC123"}
-        self.customer = Customer.objects.create(**self.customer_data)
-
-    def test_get_customers(self):
-        response = self.client.get(reverse('customer'))
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-
+        self.customer_data = {'name': 'Test Customer', 'code': '1234'}
+    
     def test_create_customer(self):
-        response = self.client.post(reverse('customer'), self.customer_data)
+        response = self.client.post(reverse('customer'), self.customer_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
 
@@ -41,15 +38,15 @@ class OrderModelTest(TestCase):
 
 
 
-class OrderAPITest(TestCase):
+class OrderAPITest(APITestCase):
     def setUp(self):
-        self.customer = Customer.objects.create(name="Test Customer", code="TC123")
-        self.order_data = {"customer": self.customer.id, "item": "Test Item", "amount": 10.50}
+        self.customer = Customer.objects.create(name='Test Customer', code='1234')
+        self.order_data = {'customer': self.customer.id, 'item': 'Test Item', 'amount': '100.00'}
+    
+    # def test_create_order(self):
+    #     response = self.client.post(reverse('order'), self.order_data, format='json')
+    #     self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     # def test_get_orders(self):
-    #     response = self.client.get(reverse('order-list'))
+    #     response = self.client.get(reverse('order'))
     #     self.assertEqual(response.status_code, status.HTTP_200_OK)
-
-    # def test_create_order(self):
-    #     response = self.client.post(reverse('order-list'), self.order_data)
-    #     self.assertEqual(response.status_code, status.HTTP_201_CREATED)

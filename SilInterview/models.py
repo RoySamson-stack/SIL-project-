@@ -18,4 +18,4 @@ class Order(models.Model):
     time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.name} ({self.customer.name})'
+        return f'{self.item} ({self.amount})'
