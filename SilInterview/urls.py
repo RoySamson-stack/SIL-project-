@@ -11,4 +11,5 @@ router.register(r'orders', OrderView, basename='orders')
 urlpatterns = [
     path('', views.customer, name='customer'),
     path('orders/create', views.order, name='order-create'),
+    path('', include(router.urls))
 ]
