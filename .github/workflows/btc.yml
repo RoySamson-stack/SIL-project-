@@ -19,42 +19,7 @@ jobs:
       with:
         python-version: '3.11'
 
-    - name: Install system dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y libdbus-1-dev
-
-    - name: Clean requirements file
-      run: |
-        python <<EOF
-        import subprocess
-
-        def check_package(package):
-            try:
-                subprocess.check_output(['pip', 'install', package], stderr=subprocess.STDOUT)
-                return True
-            except subprocess.CalledProcessError:
-                return False
-
-        with open('requirements.txt', 'r') as file:
-            lines = file.readlines()
-
-        with open('cleaned_requirements.txt', 'w') as file:
-            for line in lines:
-                package = line.strip()
-                if package and not package.startswith('#'):
-                    print(f"Checking {package}...")
-                    if not check_package(package):
-                        print(f"Skipping {package} (not found)")
-                        file.write(f"# {package} (not found)\n")
-                    else:
-                        file.write(line)
-                else:
-                    file.write(line)
-        EOF
-        mv cleaned_requirements.txt requirements.txt
-
-    - name: Install Python dependencies
+    - name: Install dependencies
       run: |
         pip install -r requirements.txt
 
