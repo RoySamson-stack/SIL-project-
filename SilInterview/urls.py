@@ -4,8 +4,8 @@ from .views import CustomerView, OrderView
 
 
 router = DefaultRouter()
-router.register(r'customers', CustomerView)
-router.register(r'orders', OrderView)
+router.register(r'customers', CustomerView, basename='customer')
+router.register(r'orders', OrderView, basename='orders')
 
 urlpatterns = [
     path('', include(router.urls))
