@@ -22,7 +22,7 @@ class CustomerAPITest(APITestCase):
         self.customer_data = {'name': 'Test Customer', 'code': '1234'}
     
     def test_create_customer(self):
-        response = self.client.post(reverse('customer'), self.customer_data, format='json')
+        response = self.client.post(reverse('customer-list'), self.customer_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
 

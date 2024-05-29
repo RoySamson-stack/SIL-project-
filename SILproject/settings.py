@@ -48,6 +48,8 @@ SIMPLE_JWT = {
 INSTALLED_APPS = [
     'SilInterview',
     'rest_framework',
+    'oauth2_provider',
+    'mozilla_django_oidc',
     'rest_framework_simplejwt',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -65,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'mozilla_django_oidc.middleware.SessionRefresh'
 ]
 
 ROOT_URLCONF = 'SILproject.urls'
@@ -115,6 +118,10 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
+    {
+        'NAME': 'mozilla_django.oidc.auth.OIDCAuthenticationBackend'
+
+    }
 ]
 
 
