@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Create Order</title>
+    <title>Customer Orders</title>
 </head>
 <body>
-    <h1>Create Order</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
-    <a href="{% url 'customer-list' %}">Back to Customer List</a>
+    <h1>Orders</h1>
+    {% if logged_in_customer %}
+        <h2>{{ logged_in_customer.name }} - {{ logged_in_customer.code }}</h2>
+        <ul>
+            {% for order in logged_in_customer.order_set.all %}
+                <li>{{ order.item }} - {{ order.amount }} - {{ order.time }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No orders found for this customer.</p>
+    {% endif %}
+    <a href="{% url 'order-create' %}">Create New Order</a>
 </body>
 </html>

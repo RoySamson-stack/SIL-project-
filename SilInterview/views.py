@@ -32,17 +32,6 @@ class OrderView(viewsets.ModelViewSet):
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
-def customer(request):
-    customers = Customer.objects.all()
-    orders = Order.objects.all()
-    return render(request, 'SilInterview/customer.html', {'customers': customers, 'orders': orders})
-
-def order(request):
-    if request.method == 'POST':
-        form = OrderForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect(reverse('customer'))
-    else:
-        form = OrderForm()
-    return render(request, 'SilInterview/order.html', {'form': form})
+def customer_orders(request):
+    logged_in_customer = request.user.customer if request.user.is_authenticated else None
+    return render(request, 'customer_orders.html', {'logged_in_customer': logged_in_customer})

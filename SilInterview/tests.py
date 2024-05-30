@@ -24,26 +24,6 @@ class CustomerTestCase(TestCase):
         return "your token "    
 
 
-# class CustomerAPITest(APITestCase):
-#     def setUp(self):
-#         self.customer_data = {'name': 'Test Customer', 'code': '1234'}
-    
-#     def test_create_customer(self):
-#         response = self.client.post(reverse('customer-list'), self.customer_data, format='json')
-#         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-
-
-
-# class OrderModelTest(TestCase):
-#     def setUp(self):
-#         customer = Customer.objects.create(name="Test Customer", code="TC123")
-#         Order.objects.create(customer=customer, item="Test Item", amount=100.00)
-
-#     def order_create_test(self):
-#         order = Order.objects.get(item="Test Item")
-#         self.assertEqual(order.amount, 100.00)
-
-
 
 class OrderAPITest(APITestCase):
     def setUp(self):
@@ -52,7 +32,7 @@ class OrderAPITest(APITestCase):
         
 
         self.customer = Customer.objects.create(name="Test customer", password="password-test")
-        self.order_data = {'customer': 1, 'product': 'Test Product'}
+        self.order_data = {'customer': self.customer.name, 'product': 'Test Product'}
 
     def test_create_order(self):
         response = self.client.post(reverse('order-create'), self.order_data, format='json')

@@ -4,6 +4,7 @@ from django.db import models
 class Customer(models.Model):
     name = models.CharField(max_length=100)
     code = models.CharField(max_length=10, unique=True)
+    password = models.CharField(max_length=10, default="12345678" )
     #add the phone number for the customer model
 
 
