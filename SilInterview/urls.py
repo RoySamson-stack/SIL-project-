@@ -1,15 +1,8 @@
 from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import CustomerView, OrderView
-from . import views 
-
-
-router = DefaultRouter()
-router.register(r'customers', CustomerView, basename='customer')
-router.register(r'orders', OrderView, basename='orders')
+from .views import customer_page, create_order
 
 urlpatterns = [
-    path('', views.Customer, name='customer'),
-    path('orders/create', views.Order, name='order-create'),
-    path('', include(router.urls))
+    path('accounts/', include('allauth.urls')), 
+    path('customer/', customer_page, name='customer'),
+    path('orders/create/', create_order, name='order-create'),
 ]
