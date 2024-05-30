@@ -9,13 +9,14 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os 
+from dotenv import load_dotenv
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+load_dotenv()
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -110,8 +111,8 @@ DATABASES = {
 SITE_ID = 1
 
 # OIDC settings
-OIDC_RP_CLIENT_ID = ' 787797592188-lscpsglgkl80db9qchgfn1u9c3dql9s7.apps.googleusercontent.com'
-OIDC_RP_CLIENT_SECRET = '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'
+OIDC_RP_CLIENT_ID = os.getenv('CLIENT_ID')
+OIDC_RP_CLIENT_SECRET = os.getenv('SECRET_KEY')
 OIDC_OP_AUTHORIZATION_ENDPOINT = 'https://accounts.google.com/o/oauth2/auth'
 OIDC_OP_TOKEN_ENDPOINT = 'https://oauth2.googleapis.com/token'
 OIDC_OP_USER_ENDPOINT = 'https://openidconnect.googleapis.com/v1/userinfo'
