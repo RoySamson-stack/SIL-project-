@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Customer List</title>
+    <title>Customer Orders</title>
 </head>
 <body>
-    <h1>Customers</h1>
-    <ul>
-        {% for customer in customers %}
-            <li>{{ customer.name }} - {{ customer.code }}</li>
-        {% endfor %}
-    </ul>
     <h1>Orders</h1>
-    <ul>
-        {% for order in orders %}
-            <li>{{ order.item }} - {{ order.amount }} - {{ order.time }}</li>
-        {% endfor %}
-    </ul>
+    {% if logged_in_customer %}
+        <h2>{{ logged_in_customer.name }} - {{ logged_in_customer.code }}</h2>
+        <ul>
+            {% for order in logged_in_customer.order_set.all %}
+                <li>{{ order.item }} - {{ order.amount }} - {{ order.time }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No orders found for this customer.</p>
+    {% endif %}
     <a href="{% url 'order-create' %}">Create New Order</a>
 </body>
 </html>

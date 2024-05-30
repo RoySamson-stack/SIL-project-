@@ -1,4 +1,3 @@
-# views.py
 from django.shortcuts import render, redirect
 from rest_framework import viewsets, status
 from rest_framework.response import Response
@@ -7,6 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from .serializers import OrderSerializer, CustomerSerializer
 from .forms import OrderForm
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 class CustomerView(viewsets.ModelViewSet):
     queryset = Customer.objects.all()
@@ -32,6 +32,20 @@ class OrderView(viewsets.ModelViewSet):
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
-def customer_orders(request):
+@login_required
+def create_order(request):
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            order = form.save(commit=False)
+            order.customer = request.user.customer  # assuming the user has a related customer object
+            order.save()
+            return redirect(reverse('customer-orders'))
+    else:
+        form = OrderForm()
+    return render(request, 'create_order.html', {'form': form})
+
+@login_required
+def customer(request):
     logged_in_customer = request.user.customer if request.user.is_authenticated else None
     return render(request, 'customer_orders.html', {'logged_in_customer': logged_in_customer})
