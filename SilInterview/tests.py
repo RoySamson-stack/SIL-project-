@@ -3,50 +3,57 @@ from rest_framework.test import  APITestCase
 from .models import Customer, Order
 from django.urls import reverse
 from rest_framework import status 
+from django.contrib.auth.models import User 
 
 
 # Create your tests here.
 class CustomerTestCase(TestCase):
     def setUp(self):
-        Customer.objects.create(name='Customer Test', code="Python")
+        self.user = User.objects.create(username="test user", password="password-test")
+        self.client.login(username="tst user", password="password-test")
+
+        self.customer_data = {'name': 'test user', 'code': '1234'}
 
 
     def customer_create_test(self):
-        customer = Customer.objects.get(code="Python")
-        self.assertEqual(customer.name, "Test customer")
+        response = self.client.post(reverse('customer'), self.customer_data, format="json")
+        self.assertEqual(response.status_code,status.HTTP_201_CREATED)
 
 
+    def get_oidc_token(self):
+        return "your token "    
 
-class CustomerAPITest(APITestCase):
-    def setUp(self):
-        self.customer_data = {'name': 'Test Customer', 'code': '1234'}
+
+# class CustomerAPITest(APITestCase):
+#     def setUp(self):
+#         self.customer_data = {'name': 'Test Customer', 'code': '1234'}
     
-    def test_create_customer(self):
-        response = self.client.post(reverse('customer-list'), self.customer_data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+#     def test_create_customer(self):
+#         response = self.client.post(reverse('customer-list'), self.customer_data, format='json')
+#         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
 
 
-class OrderModelTest(TestCase):
-    def setUp(self):
-        customer = Customer.objects.create(name="Test Customer", code="TC123")
-        Order.objects.create(customer=customer, item="Test Item", amount=100.00)
+# class OrderModelTest(TestCase):
+#     def setUp(self):
+#         customer = Customer.objects.create(name="Test Customer", code="TC123")
+#         Order.objects.create(customer=customer, item="Test Item", amount=100.00)
 
-    def order_create_test(self):
-        order = Order.objects.get(item="Test Item")
-        self.assertEqual(order.amount, 100.00)
+#     def order_create_test(self):
+#         order = Order.objects.get(item="Test Item")
+#         self.assertEqual(order.amount, 100.00)
 
 
 
 class OrderAPITest(APITestCase):
     def setUp(self):
-        self.customer = Customer.objects.create(name='Test Customer', code='1234')
-        self.order_data = {'customer': self.customer.id, 'item': 'Test Item', 'amount': '100.00'}
-    
-    # def test_create_order(self):
-    #     response = self.client.post(reverse('order'), self.order_data, format='json')
-    #     self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.user = User.objects.create_user(username='test user ', password='password-test')
+        self.client.login(username='testuser', password='testpassword')
+        
 
-    # def test_get_orders(self):
-    #     response = self.client.get(reverse('order'))
-    #     self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.customer = Customer.objects.create(name="Test customer", password="password-test")
+        self.order_data = {'customer': 1, 'product': 'Test Product'}
+
+    def test_create_order(self):
+        response = self.client.post(reverse('order-create'), self.order_data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)

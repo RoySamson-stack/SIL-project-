@@ -50,7 +50,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'oauth2_provider',
     'mozilla_django_oidc',
-    'rest_framework_simplejwt',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -67,8 +71,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'mozilla_django_oidc.middleware.SessionRefresh'
+    'allauth.account.middleware.AccountMiddleware',  
+    'mozilla_django_oidc.middleware.SessionRefresh',  
 ]
+
 
 ROOT_URLCONF = 'SILproject.urls'
 
@@ -101,7 +107,23 @@ DATABASES = {
     }
 }
 
+SITE_ID = 1
 
+# OIDC settings
+OIDC_RP_CLIENT_ID = ' 787797592188-lscpsglgkl80db9qchgfn1u9c3dql9s7.apps.googleusercontent.com'
+OIDC_RP_CLIENT_SECRET = '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'
+OIDC_OP_AUTHORIZATION_ENDPOINT = 'https://accounts.google.com/o/oauth2/auth'
+OIDC_OP_TOKEN_ENDPOINT = 'https://oauth2.googleapis.com/token'
+OIDC_OP_USER_ENDPOINT = 'https://openidconnect.googleapis.com/v1/userinfo'
+OIDC_RP_SIGN_ALGO = 'RS256'
+OIDC_OP_JWKS_ENDPOINT = 'https://www.googleapis.com/oauth2/v3/certs'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = 'https://accounts.google.com/logout?client_id=your-client-id&returnTo=http://localhost:8000'
+
+# django-allauth settings
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_REQUIRED = True
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
