@@ -12,8 +12,8 @@ def customer_page(request):
         customer = user.customer
 
 
-    orders = Order.objets.filter(customer=customer) 
-    return render(request, 'Silinterview/customer.html',{'orders':orders})       
+    orders = Order.objects.filter(customer=customer) 
+    return render(request, 'SilInterview/customer.html',{'orders':orders})       
 
 @login_required
 def create_order(request):
@@ -26,4 +26,4 @@ def create_order(request):
             return redirect('customer')
     else:
         form = OrderForm()
-    return render(request, 'Silinterview/order.html', {'form': form})
+    return render(request, 'SilInterview/order.html', {'form': form})
