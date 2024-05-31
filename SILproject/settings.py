@@ -119,6 +119,7 @@ OIDC_OP_USER_ENDPOINT = 'https://openidconnect.googleapis.com/v1/userinfo'
 OIDC_RP_SIGN_ALGO = 'RS256'
 OIDC_OP_JWKS_ENDPOINT = 'https://www.googleapis.com/oauth2/v3/certs'
 
+LOGIN_URL= 'accounts/login'
 LOGIN_REDIRECT_URL = 'customer'
 LOGOUT_REDIRECT_URL = 'https://accounts.google.com/logout?client_id=your-client-id&returnTo=http://localhost:8000'
 
@@ -126,6 +127,7 @@ LOGOUT_REDIRECT_URL = 'https://accounts.google.com/logout?client_id=your-client-
 ACCOUNT_EMAIL_VERIFICATION = 'optional'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+
 
 
 SOCILALACCOUNT_PROVIDERS = {

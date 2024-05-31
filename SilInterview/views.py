@@ -3,6 +3,12 @@ from django.contrib.auth.decorators import login_required
 from .models import Order, Customer
 from .forms import OrderForm
 
+
+
+def login(request):
+    return render(request, 'login.html')
+
+
 @login_required
 def customer_page(request):
     user = request.user
