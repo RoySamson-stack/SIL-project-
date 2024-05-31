@@ -1,13 +1,19 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Order
+from .models import Order, Customer
 from .forms import OrderForm
 
 @login_required
 def customer_page(request):
-    customer = request.user.customer
-    orders = Order.objects.filter(customer=request.user.customer)
-    return render(request, 'customer.html', {'orders': orders})
+    user = request.user
+    if not hasattr(user, 'customer'):
+        customer = Customer.objects.create(user=user, name=user.username, code="1234")
+    else:
+        customer = user.customer
+
+
+    orders = Order.objets.filter(customer=customer) 
+    return render(request, 'Silinterview/customer.html',{'orders':orders})       
 
 @login_required
 def create_order(request):
@@ -20,4 +26,4 @@ def create_order(request):
             return redirect('customer')
     else:
         form = OrderForm()
-    return render(request, 'order.html', {'form': form})
+    return render(request, 'Silinterview/order.html', {'form': form})
