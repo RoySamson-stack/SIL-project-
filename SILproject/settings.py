@@ -124,11 +124,11 @@ LOGIN_REDIRECT_URL = 'customer'
 LOGOUT_REDIRECT_URL = 'https://accounts.google.com/logout?client_id=your-client-id&returnTo=http://localhost:8000'
 
 # django-allauth settings
-ACCOUNT_EMAIL_VERIFICATION = 'optional'
-ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 
-
+EMAIL_BACKEND = 'django.core.auth.backends.console.EmailBackend'
 
 SOCILALACCOUNT_PROVIDERS = {
     'google':

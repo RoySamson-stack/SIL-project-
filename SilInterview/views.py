@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Order, Customer
 from .forms import OrderForm
+import uuid
 
 
 
@@ -13,7 +14,7 @@ def login(request):
 def customer_page(request):
     user = request.user
     if not hasattr(user, 'customer'):
-        customer = Customer.objects.create(user=user, name=user.username, code="1234")
+        customer = Customer.objects.create(user=user, name=user.username, code=str(uuid.uuid4()))
     else:
         customer = user.customer
 
