@@ -3,7 +3,13 @@ from django.contrib.auth.decorators import login_required
 from .models import Order, Customer
 from .forms import OrderForm
 import uuid
+import africastalking
 
+
+username = 'sandbox'
+api_key = ''
+africastalking.initialize(username, api_key)
+sms = africastalking.SMS
 
 
 def login(request):
@@ -30,6 +36,16 @@ def create_order(request):
             order = form.save(commit=False)
             order.customer = request.user.customer
             order.save()
+
+            phone_number = order.phonenumber
+            message = f"Order Created: {order.item} for amount {order.amount}."
+            try:
+                response = sms.send(message, [phone_number])
+                print(f"SMS sent successfully: {response}")
+            except Exception as e:
+                print(f"Error sending SMS: {e}")
+
+
             return redirect('customer')
     else:
         form = OrderForm()
