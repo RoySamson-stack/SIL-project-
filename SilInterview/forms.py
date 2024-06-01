@@ -6,3 +6,6 @@ class OrderForm(forms.ModelForm):
         model = Order
         fields = ['item', 'amount', 'phonenumber']
 
+
+    phonenumber = forms.CharField(required=True, help_text="Enter phone number ")    
+
