@@ -60,8 +60,8 @@ jobs:
 
     - name: Run migrations
       run: |
-        python manage.py migrate
+        python3 manage.py migrate
 
     - name: Run tests
       run: |
-        python manage.py test
+        python3 manage.py test
