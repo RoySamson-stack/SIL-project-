@@ -29,9 +29,9 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y libdbus-1-dev
 
-    - name: Install Django
+    - name: Install Django and Django REST Framework
       run: |
-        pip install django
+        pip install django djangorestframework
 
     - name: Clean requirements file
       run: |
