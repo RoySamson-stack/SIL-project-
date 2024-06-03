@@ -9,5 +9,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('customer/', customer_page, name='customer'),
     path('orders/create/', create_order, name='order-create'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('logout/', LogoutView.as_view(next_page='/accounts/login'), name='logout'),
 ]
