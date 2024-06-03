@@ -31,7 +31,7 @@ jobs:
 
     - name: Install Django, Django REST Framework, and oauth2_provider
       run: |
-        pip install django djangorestframework django-oauth2-provider
+        pip install django djangorestframework oauth2-provider
 
     - name: Clean requirements file
       run: |
