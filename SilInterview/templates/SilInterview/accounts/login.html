@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Order</title>
+    <title>Login</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,7 +14,7 @@
             height: 100vh;
             margin: 0;
         }
-        .container {
+        .login-container {
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
@@ -22,30 +22,22 @@
             width: 300px;
             text-align: center;
         }
-        h1 {
+        .login-container h2 {
             margin-bottom: 20px;
         }
-        form {
+        .login-container form {
             display: flex;
             flex-direction: column;
         }
-        form p {
-            margin-bottom: 10px;
-        }
-        input[type="text"],
-        input[type="number"],
-        input[type="email"],
-        select,
-        textarea {
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
             padding: 10px;
             margin-bottom: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 16px;
-            width: 100%;
-            box-sizing: border-box;
         }
-        button {
+        .login-container button {
             padding: 10px;
             border: none;
             border-radius: 5px;
@@ -54,29 +46,24 @@
             font-size: 16px;
             cursor: pointer;
         }
-        button:hover {
+        .login-container button:hover {
             background-color: #0056b3;
         }
-        a {
+        .login-container .signup-link {
             margin-top: 10px;
             display: block;
-            color: #007bff;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Create Order</h1>
-        <form method="post">
+    <div class="login-container">
+        <h2>Login</h2>
+        <form method="post" action="{% url 'account_login' %}">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Submit</button>
+            <button type="submit">Login</button>
         </form>
-        <a href="{% url 'customer' %}">View My Orders</a>
+        <a class="signup-link" href="{% url 'account_signup' %}">Sign up</a>
     </div>
 </body>
 </html>

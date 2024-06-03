@@ -8,5 +8,5 @@ class OrderForm(forms.ModelForm):
         fields = ['item', 'amount', 'phonenumber']
 
 
-    phonenumber = forms.CharField(required=True, help_text="Enter phone number ")    
+    phonenumber = forms.CharField(required=True, )    
 

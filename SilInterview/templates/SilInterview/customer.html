@@ -2,20 +2,56 @@
 <html>
 <head>
     <title>Customer Orders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome, {{ user.username }}</h1>
-    <h2>Orders</h2>
-    <form id="logout-form" action="{% url 'logout' %}" method="post" style="display:none;">
-        {% csrf_token %}
-    </form>
-    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-    
-    <ul>
-        {% for order in orders %}
-            <li>{{ order.item }} - {{ order.amount }} - {{ order.time }}</li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'order-create' %}">Create New Order</a>
+    <div class="container">
+        <h1>Welcome, {{ user.username }}</h1>
+        <h2>Orders</h2>
+        <form id="logout-form" action="{% url 'logout' %}" method="post" style="display:none;">
+            {% csrf_token %}
+        </form>
+        <a class="btn" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+        
+        <ul>
+            {% for order in orders %}
+                <li>{{ order.item }} - {{ order.amount }} - {{ order.time }}</li>
+            {% endfor %}
+        </ul>
+        <a class="btn" href="{% url 'order-create' %}">Create New Order</a>
+    </div>
 </body>
 </html>
