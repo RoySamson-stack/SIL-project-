@@ -6,6 +6,11 @@
 <body>
     <h1>Welcome, {{ user.username }}</h1>
     <h2>Orders</h2>
+    <form id="logout-form" action="{% url 'logout' %}" method="post" style="display:none;">
+        {% csrf_token %}
+    </form>
+    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+    
     <ul>
         {% for order in orders %}
             <li>{{ order.item }} - {{ order.amount }} - {{ order.time }}</li>

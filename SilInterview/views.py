@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Order, Customer
 from .forms import OrderForm
 import uuid
+from django.views import View
 import africastalking
 
 
@@ -53,3 +54,9 @@ def create_order(request):
     else:
         form = OrderForm()
     return render(request, 'SilInterview/order.html', {'form': form})
+
+
+class CustomLogoutView(View):
+    def get(self, request):
+        logout(request)
+        return redirect('/accounts/login/')
