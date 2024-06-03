@@ -13,7 +13,6 @@ colorama==0.4.6
 cryptography==42.0.7
 distlib==0.3.7
 distro==1.8.0
-distro-info==1.5+ubuntu0.23.10.1
 Django==5.0.6
 django-allauth==0.63.2
 django-bootstrap5==24.2
