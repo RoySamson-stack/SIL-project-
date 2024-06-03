@@ -16,8 +16,8 @@ africastalking.initialize(username, api_key)
 sms = africastalking.SMS
 
 
-def login(request):
-    return render(request, 'login.html')
+# def login(request):
+#     return render(request, 'login.html')
 
 
 @login_required
