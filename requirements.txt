@@ -55,7 +55,6 @@ six==1.16.0
 SQLAlchemy==1.4.46
 sqlparse==0.4.2
 systemd-python==235
-unattended-upgrades==0.1
 urllib3==1.26.12
 usb-creator==0.3.16
 vboxapi==1.0
