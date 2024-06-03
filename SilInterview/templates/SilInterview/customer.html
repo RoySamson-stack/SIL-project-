@@ -23,15 +23,26 @@
         }
         li {
             margin-bottom: 10px;
+            background-color: rgb(190, 188, 188);
+            padding: 7px;
         }
         .btn {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 10px 10px;
             background-color: #007bff;
             color: #fff;
             text-decoration: none;
             border-radius: 5px;
         }
+        .btn-logout{
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: red;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        } 
+        
         .btn:hover {
             background-color: #0056b3;
         }
@@ -44,7 +55,7 @@
         <form id="logout-form" action="{% url 'logout' %}" method="post" style="display:none;">
             {% csrf_token %}
         </form>
-        <a class="btn" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+        <a class="btn-logout" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
         
         <ul>
             {% for order in orders %}
