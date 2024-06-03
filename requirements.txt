@@ -37,7 +37,6 @@ joblib==1.2.0
 josepy==1.14.0
 jwcrypto==1.5.6
 keyring==24.2.0
-language-selector==0.1
 launchpadlib==1.11.0
 lazr.restfulclient==0.14.5
 lazr.uri==1.0.6
