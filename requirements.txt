@@ -23,7 +23,6 @@ launchpadlib==1.11.0
 lazr.restfulclient==0.14.5
 lazr.uri==1.0.6
 lockfile==0.12.2
-louis==3.24.0
 markdown-it-py==2.1.0
 mdurl==0.1.2
 monotonic==1.6

@@ -31,7 +31,7 @@ jobs:
 
     - name: Install Django, Django REST Framework, oauth2_provider, mozilla-django-oidc PyJWT
       run: |
-        pip install django djangorestframework oauth2-provider mozilla-django-oidc django-allauth PyJWT
+        pip install django djangorestframework oauth2-provider mozilla-django-oidc django-allauth PyJWT africastalking
 
     - name: Clean requirements file
       run: |
