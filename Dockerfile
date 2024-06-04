@@ -1,30 +1,24 @@
-# Use an official Python runtime as a parent image
+# Use the official Python image.
+# https://hub.docker.com/_/python
 FROM python:3.11-slim
 
-# Install necessary system dependencies
-RUN apt-get update && apt-get install -y \
-    libcairo2-dev \
-    libxcb1-dev \
-    libxcb-render0-dev \
-    libxcb-shm0-dev \
-    gcc \
-    g++
-
-# Set environment variables for compilation
-ENV CFLAGS="-fPIC"
-ENV LDFLAGS="-fPIC"
-
-# Set the working directory in the container
+# Set the working directory to /app
 WORKDIR /app
 
 # Copy the current directory contents into the container at /app
-COPY . /app
+ADD . /app
 
-# Install Python dependencies
-RUN pip install -r requirements.txt
+# Install any needed packages specified in requirements.txt
+RUN apt-get update && \
+    apt-get install -y libcairo2-dev libglib2.0-dev libpixman-1-dev libuuid1 libfreetype6-dev libpng-dev && \
+    pip install --upgrade pip && \
+    pip install -r requirements.txt
 
-# Make port 5000 available to the world outside this container
-EXPOSE 5000
+# Make port 80 available to the world outside this container
+EXPOSE 80
 
-# Run the application
+# Define environment variable
+ENV NAME World
+
+# Run app.py when the container launches
 CMD ["python", "app.py"]
