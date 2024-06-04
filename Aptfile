@@ -3,4 +3,4 @@ gettext
 libcairo2-dev
 pkg-config
 python3-dev
-pycairo
+python3-cairo
