@@ -9,7 +9,7 @@ colorama==0.4.6
 cryptography==38.0.4
 distro==1.8.0
 Django==3.2.18
-duplicity==0.8.22
+duplicity==0.8.20
 fasteners==0.17.3
 future==0.18.2
 greenlet==2.0.1

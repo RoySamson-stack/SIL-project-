@@ -5,3 +5,6 @@ libgif-dev
 ffmpeg
 sox
 texlive-full  
+librsync-dev
+
+
