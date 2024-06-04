@@ -47,14 +47,16 @@ def create_order(request):
             order = form.save(commit=False)
             order.customer = request.user.customer
             order.save()
+            if phonenumber.startswith('0'):
+                return '+254' + phonenumber[1:]
 
-            phone_number = order.phonenumber
-            message = f"Order Created: {order.item} for amount {order.amount}."
-            try:
-                response = sms.send(message, [phone_number])
-                print(f"SMS sent successfully: {response}")
-            except Exception as e:
-                print(f"Error sending SMS: {e}")
+                phone_number = order.phonenumber
+                message = f"Order Created: {order.item} for amount {order.amount}."
+                try:
+                    response = sms.send(message, [phone_number])
+                    print(f"SMS sent successfully: {response}")
+                except Exception as e:
+                    print(f"Error sending SMS: {e}")
 
 
             return redirect('customer')
