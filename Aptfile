@@ -1,0 +1,5 @@
+libgirepository1.0-dev
+gettext
+libcairo2-dev
+pkg-config
+python3-dev
