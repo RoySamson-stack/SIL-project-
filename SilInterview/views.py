@@ -12,6 +12,9 @@ import africastalking
 username = 'SilInterview'
 api_key = '08f5b18ca6898e6996d87b0ccfdc407b8745dc5c0987db03d09060dac228aa62'
 
+africastalking.initialize(username, api_key)
+sms = africastalking.SMS
+
 
 # def login(request):
 #     return render(request, 'login.html')
@@ -28,12 +31,6 @@ def customer_page(request):
 
     orders = Order.objects.filter(customer=customer) 
     return render(request, 'SilInterview/customer.html',{'orders':orders})       
-
-try:
-    africastalking.initialize(username, api_key)
-    sms = africastalking.SMS
-except Exception as e:
-    print(f"Error initializing Africa's Talking: {e}")
 
 @login_required
 def create_order(request):
@@ -52,10 +49,12 @@ def create_order(request):
             except Exception as e:
                 print(f"Error sending SMS: {e}")
 
+
             return redirect('customer')
     else:
         form = OrderForm()
     return render(request, 'SilInterview/order.html', {'form': form})
+
 
 class CustomLogoutView(View):
     def get(self, request):
