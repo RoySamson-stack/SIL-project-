@@ -2,7 +2,7 @@ import africastalking
 
 # Replace these with your Africa's Talking credentials
 username = 'SilInterview'  # For production, use your actual username
-api_key = '64709e0a8be635aeda4e1b98742ed8530f101ac2d1ab087aeb8d0a44e46505d0'
+api_key = '08f5b18ca6898e6996d87b0ccfdc407b8745dc5c0987db03d09060dac228aa62'
 
 # Initialize the SDK
 africastalking.initialize(username, api_key)
