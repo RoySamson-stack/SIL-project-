@@ -11,7 +11,6 @@ if __name__ == "__main__":
 
 
 def main():
-    """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'SILproject.settings')
     try:
         from django.core.management import execute_from_command_line
@@ -21,8 +20,9 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
+    # Set DEBUG to True for local development
+    os.environ.setdefault('DEBUG', 'True')
     execute_from_command_line(sys.argv)
-
 
 if __name__ == '__main__':
     main()
