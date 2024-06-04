@@ -33,12 +33,6 @@ def customer_page(request):
     return render(request, 'SilInterview/customer.html',{'orders':orders})       
 
 
-
-# def format_phone_number(phonenumber):
-#     if phonenumber.startswith('0'):
-#         return '+254' + phonenumber[1:]
-#     return phonenumber
-
 @login_required
 def create_order(request):
     if request.method == 'POST':
@@ -47,17 +41,14 @@ def create_order(request):
             order = form.save(commit=False)
             order.customer = request.user.customer
             order.save()
+    
             phone_number = order.phonenumber
-
-            if phone_number.startswith('0'):
-                return '+254' + phone_number[1:]
-
-                message = f"Order Created: {order.item} for amount {order.amount}."
-                try:
-                    response = sms.send(message, [phone_number])
-                    print(f"SMS sent successfully: {response}")
-                except Exception as e:
-                    print(f"Error sending SMS: {e}")
+            message = f"Order Created: {order.item} for amount {order.amount}."
+            try:
+                response = sms.send(message, [phone_number])
+                print(f"SMS sent successfully: {response}")
+            except Exception as e:
+                print(f"Error sending SMS: {e}")
 
 
             return redirect('customer')
