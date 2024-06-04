@@ -6,5 +6,6 @@ ffmpeg
 sox
 texlive-full  
 librsync-dev
+gettext
 
 
