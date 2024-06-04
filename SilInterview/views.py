@@ -10,7 +10,7 @@ import africastalking
 # username = 'sandbox'
 # api_key = '33f28a48bbde171841669871ee5ff1e0f447099f885e161f7e0910ffc1f44205'
 username = 'SilInterview'
-api_key = '64709e0a8be635aeda4e1b98742ed8530f101ac2d1ab087aeb8d0a44e46505d0'
+api_key = '08f5b18ca6898e6996d87b0ccfdc407b8745dc5c0987db03d09060dac228aa62'
 
 africastalking.initialize(username, api_key)
 sms = africastalking.SMS

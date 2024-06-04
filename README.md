@@ -77,4 +77,8 @@ def send_sms(phone_number, message):
 The project uses OpenID Connect for authentication. Ensure you have the following settings in your `settings.py`:
 ```python
 OIDC_RP_CLIENT_ID = 'your-client-id'
-OIDC_RP_CLIENT_SECRET =
+OIDC_RP_CLIENT_SECRET ='your-client-secret'
+
+```
+### live site
+https://silinterview-590322345b57.herokuapp.com/
