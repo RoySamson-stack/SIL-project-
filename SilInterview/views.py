@@ -34,10 +34,10 @@ def customer_page(request):
 
 
 
-def format_phone_number(phonenumber):
-    if phonenumber.startswith('0'):
-        return '+254' + phonenumber[1:]
-    return phonenumber
+# def format_phone_number(phonenumber):
+#     if phonenumber.startswith('0'):
+#         return '+254' + phonenumber[1:]
+#     return phonenumber
 
 @login_required
 def create_order(request):
