@@ -3,7 +3,6 @@ gettext
 libcairo2-dev
 pkg-config
 python3-dev
-pycairo
 libcairo2-dev
 libxcb1-dev
 libxcb-render0-dev
