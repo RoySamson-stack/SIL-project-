@@ -1,4 +1,3 @@
-import os
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Order, Customer
@@ -7,8 +6,28 @@ import uuid
 from django.views import View
 import africastalking
 
-username = 'SilInterview' 
-api_key = '08f5b18ca6898e6996d87b0ccfdc407b8745dc5c0987db03d09060dac228aa62'  
+
+# username = 'sandbox'
+# api_key = '33f28a48bbde171841669871ee5ff1e0f447099f885e161f7e0910ffc1f44205'
+username = 'SilInterview'
+api_key = '08f5b18ca6898e6996d87b0ccfdc407b8745dc5c0987db03d09060dac228aa62'
+
+
+# def login(request):
+#     return render(request, 'login.html')
+
+
+@login_required
+def customer_page(request):
+    user = request.user
+    if not hasattr(user, 'customer'):
+        customer = Customer.objects.create(user=user, name=user.username, code=str(uuid.uuid4()))
+    else:
+        customer = user.customer
+
+
+    orders = Order.objects.filter(customer=customer) 
+    return render(request, 'SilInterview/customer.html',{'orders':orders})       
 
 try:
     africastalking.initialize(username, api_key)
@@ -37,3 +56,8 @@ def create_order(request):
     else:
         form = OrderForm()
     return render(request, 'SilInterview/order.html', {'form': form})
+
+class CustomLogoutView(View):
+    def get(self, request):
+        logout(request)
+        return redirect('/accounts/login/')
