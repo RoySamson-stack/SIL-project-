@@ -27,6 +27,7 @@ SECRET_KEY = 'django-insecure-ql%=7kf4l21-3lt^42-yux5-6+c79efta_58=s!irt%30_teh=
 DEBUG = True
 
 ALLOWED_HOSTS = [ '0.0.0.0', "127.0.0.1", "https://silinterview-590322345b57.herokuapp.com/"]
+PORT = int(os.environ.get('PORT', 8000))
 
 
 #AUTHENTICATION
