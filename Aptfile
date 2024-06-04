@@ -1,6 +1,7 @@
+libcairo2
 libcairo2-dev
-libglib2.0-dev
-libpixman-1-dev
-libuuid1
-libfreetype6-dev
-libpng-dev
+libjpeg-dev
+libgif-dev
+ffmpeg
+sox
+texlive-full  
