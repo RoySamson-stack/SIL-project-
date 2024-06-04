@@ -1,8 +1,3 @@
-libgirepository1.0-dev
-gettext
-libcairo2-dev
-pkg-config
-python3-dev
 libcairo2-dev
 libxcb1-dev
 libxcb-render0-dev
