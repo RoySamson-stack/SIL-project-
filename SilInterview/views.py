@@ -47,10 +47,11 @@ def create_order(request):
             order = form.save(commit=False)
             order.customer = request.user.customer
             order.save()
-            if phonenumber.startswith('0'):
-                return '+254' + phonenumber[1:]
+            phone_number = order.phonenumber
 
-                phone_number = order.phonenumber
+            if phone_number.startswith('0'):
+                return '+254' + phone_number[1:]
+
                 message = f"Order Created: {order.item} for amount {order.amount}."
                 try:
                     response = sms.send(message, [phone_number])
