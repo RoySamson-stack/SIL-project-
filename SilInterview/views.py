@@ -32,6 +32,13 @@ def customer_page(request):
     orders = Order.objects.filter(customer=customer) 
     return render(request, 'SilInterview/customer.html',{'orders':orders})       
 
+
+
+def format_phone_number(phone_number):
+    if phone_number.startswith('0'):
+        return '+254' + phone_number[1:]
+    return phone_number
+
 @login_required
 def create_order(request):
     if request.method == 'POST':
