@@ -10,6 +10,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+
+    env:
+      DJANGO_SETTINGS_MODULE: SILproject.settings
+
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -17,7 +22,7 @@ jobs:
     - name: Set up Python 3.11
       uses: actions/setup-python@v2
       with:
-        python-version: '3.11'a
+        python-version: '3.11'
 
     - name: Create and activate virtual environment
       run: |
@@ -45,6 +50,6 @@ jobs:
     #   run: |
     #     python manage.py migrate
 
-    # - name: Run tests
-    #   run: |
-    #     python manage.py test
+    - name: Run tests
+      run: |
+        python manage.py test

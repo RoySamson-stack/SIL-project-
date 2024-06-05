@@ -12,7 +12,7 @@ A simple Django project to manage customers and orders using a REST API, SMS not
 - Unit testing with CI/CD using GitHub Actions
 
 ## Prerequisites
-- Python 3.12.3
+- Python 3.11.6
 - Django 4.x
 - Africa's Talking API credentials
 - Google OpenID Connect credentials
