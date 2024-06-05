@@ -10,6 +10,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      DJANGO_SETTINGS_MODULE: SILproject.settings
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -29,22 +32,27 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y libdbus-1-dev
 
-    - name: Install Django, Django REST Framework, oauth2_provider, mozilla-django-oidc PyJWT
+    - name: Install Django, Django REST Framework, oauth2_provider, mozilla-django-oidc, PyJWT, africastalking
       run: |
+        source venv/bin/activate
         pip install django djangorestframework oauth2-provider mozilla-django-oidc django-allauth PyJWT africastalking
 
     - name: Clean requirements file
       run: |
+        source venv/bin/activate
         pip freeze > requirements.txt
 
     - name: Install Python dependencies
       run: |
+        source venv/bin/activate
         pip install -r requirements.txt
 
-    # - name: Run migrations
-    #   run: |
-    #     python manage.py migrate
+    - name: Run migrations
+      run: |
+        source venv/bin/activate
+        python manage.py migrate
 
     - name: Run tests
       run: |
+        source venv/bin/activate
         python manage.py test
