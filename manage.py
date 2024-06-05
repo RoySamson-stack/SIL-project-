@@ -9,8 +9,8 @@ if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8000))
     execute_from_command_line(["manage.py", "runserver", "0.0.0.0:{}".format(port)])
 
-if 'DJANGO_SETTINGS_MODULE' not in os.environ:
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'SILproject.settings')
+# if 'DJANGO_SETTINGS_MODULE' not in os.environ:
+#     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'SILproject.settings')
 
 
 def main():
@@ -24,7 +24,6 @@ def main():
             "forget to activate a virtual environment?"
         ) from exc
     # Set DEBUG to True for local development
-    os.environ.setdefault('DEBUG', 'True')
     execute_from_command_line(sys.argv)
 
 if __name__ == '__main__':
