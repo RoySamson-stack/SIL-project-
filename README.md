@@ -13,14 +13,14 @@ A simple Django project to manage customers and orders using a REST API, SMS not
 
 ## Prerequisites
 - Python 3.11.6
-- Django 4.x
+- Django 5.0.6
 - Africa's Talking API credentials
 - Google OpenID Connect credentials
 
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/SIL-project.git
+   git clone https://github.com/your-username/SIL-project-.git
    cd SIL-project
    ```
 
