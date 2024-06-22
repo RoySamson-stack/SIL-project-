@@ -20,7 +20,7 @@ A simple Django project to manage customers and orders using a REST API, SMS not
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/SIL-project-.git
+   git clone https://github.com/RoySamson-stack/SIL-project-.git
    cd SIL-project
    ```
 
