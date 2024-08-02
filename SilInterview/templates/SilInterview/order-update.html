@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Orders</title>
+    <title>Update Order</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -68,20 +66,16 @@
             text-decoration: underline;
         }
     </style>
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Create Order</h1>
+        <h1>Update Order</h1>
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Submit</button>
+            <button type="submit">Update Order</button>
         </form>
-        <a href="{% url 'customer' %}">View My Orders</a>
-        {% if order %}
-            <a href="{% url 'update_order' order.pk %}"><button>Update Order</button></a>
-            <a href="{% url 'delete_order' order.pk %}"><button>Delete Order</button></a>
-        {% endif %}
     </div>
 </body>
 </html>

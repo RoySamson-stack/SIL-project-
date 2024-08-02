@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Order, Customer
 from .forms import OrderForm
@@ -33,6 +33,7 @@ def customer_page(request):
     return render(request, 'SilInterview/customer.html',{'orders':orders})       
 
 
+
 @login_required
 def create_order(request):
     if request.method == 'POST':
@@ -56,6 +57,26 @@ def create_order(request):
         form = OrderForm()
     return render(request, 'SilInterview/order.html', {'form': form})
 
+
+@login_required
+def update_order(request, pk):
+    order = get_object_or_404(Order, pk=pk)
+    if request.method == 'POST':
+        form = OrderForm(request.POST, instance=order)
+        if form.is_valid():
+            form.save()
+            return redirect('customer')
+    else:
+        form = OrderForm(instance=order)
+    return render(request, 'SilInterview/order-update.html', {'form': form, 'order': order})
+
+@login_required
+def delete_order(request, pk):
+    order = get_object_or_404(Order, pk=pk)
+    if request.method == 'POST':
+        order.delete()
+        return redirect('customer')
+    return render(request, 'SilInterview/order-delete.html', {'order': order})
 
 class CustomLogoutView(View):
     def get(self, request):

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Order</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Delete Order</h1>
+        <p>Are you sure you want to delete the order: {{ order.item }} - {{ order.amount }} - {{ order.time }}?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Delete Order</button>
+            <a href="{% url 'customer' %}">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>

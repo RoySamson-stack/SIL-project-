@@ -33,18 +33,30 @@
             color: #fff;
             text-decoration: none;
             border-radius: 5px;
+            margin-right: 5px;
         }
-        .btn-logout{
+        .btn-logout {
             display: inline-block;
             padding: 5px 10px;
             background-color: red;
             color: #fff;
             text-decoration: none;
             border-radius: 5px;
-        } 
-        
+        }
+        .btn-delete {
+            background-color: #dc3545;
+        }
+        .btn-update {
+            background-color: #28a745;
+        }
         .btn:hover {
             background-color: #0056b3;
+        }
+        .btn-delete:hover {
+            background-color: #c82333;
+        }
+        .btn-update:hover {
+            background-color: #218838;
         }
     </style>
 </head>
@@ -59,7 +71,14 @@
         
         <ul>
             {% for order in orders %}
-                <li>{{ order.item }} - {{ order.amount }} - {{ order.time }}</li>
+                <li>
+                    {{ order.item }} - {{ order.amount }} - {{ order.time }}
+                    <a class="btn btn-update" href="{% url 'order-update' order.id %}">Update</a>
+                    <form action="{% url 'order-delete' order.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-delete">Delete</button>
+                    </form>
+                </li>
             {% endfor %}
         </ul>
         <a class="btn" href="{% url 'order-create' %}">Create New Order</a>

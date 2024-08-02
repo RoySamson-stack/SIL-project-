@@ -11,6 +11,9 @@ class CustomerSerializer(serializers.Serializer):
     def create(self, validated):
         return Customer.objects.create(**validated)
 
+
+
+#updated the tem so that it ould be a list just incase for muslti products ordered
 class OrderSerializer(serializers.Serializer):
     class Meta:
         model = Order
